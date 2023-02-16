@@ -1,4 +1,4 @@
-const { Recipe, Diets } = require('../../db');
+const { Recipe, Diet } = require('../../db');
 require('dotenv').config();
 const { API_KEY } = process.env;
 const axios = require('axios');
@@ -6,13 +6,11 @@ const { cleanArray } = require('../../utils/utils')
 
 
 
-
-
 const getAllRecipes = async () => {
 
     const databaseRecipes = await Recipe.findAll({
         include: {
-            model: Diets,
+            model: Diet,
             attributes: ['name'],
             through: {
                 attributes: [],

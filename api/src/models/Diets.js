@@ -1,7 +1,7 @@
-const { DataTypes, UUIDV4} = require('sequelize');
+const { DataTypes} = require('sequelize');
 
 module.exports = (sequelize) => {
-    sequelize.define('Diets', {
+    sequelize.define('Diet', {
         id: { // si no quiero el UUID, no pongo esto y por default me va a poner un ID
             type: DataTypes.UUID,
             defaultValue: DataTypes.UUIDV4,

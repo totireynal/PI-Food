@@ -1,7 +1,7 @@
 const axios = require('axios');
 require('dotenv').config();
 const { API_KEY } = process.env;
-const { Diets } = require('../../db');
+const { Diet } = require('../../db');
 
 const getDietsHandler = async (req, res) => {
 
@@ -21,11 +21,11 @@ const getDietsHandler = async (req, res) => {
 
        const resultsFunction = async (diets) => {
         for (let diet of diets) {
-             await Diets.findOrCreate({ where: {name: diet}})
+             await Diet.findOrCreate({ where: {name: diet}})
         }};
         
         await resultsFunction(diets);
-        const results = await Diets.findAll();
+        const results = await Diet.findAll();
         
         res.status(200).json(results)
 
