@@ -7,7 +7,7 @@ const cleanArray = (arr) => {
             summary: elem.summary,
             healthScore: elem.healthScore,
             diets: elem.diets,
-            steps: elem.analyzedInstructions,
+            steps: elem.analyzedInstructions[0]?.steps.map(elem => elem.step),
             created: false
 
         }

@@ -1,30 +1,13 @@
-const { Recipe, Diet } = require('../../db')
+const { postRecipe } = require('../../controllers/recipesControllers/postRecipe.js');
 
 
 const postRecipesHandler = async (req, res) => {
 
-    const {name, image, summary, healthScore, steps, diets, created} = req.body
+    const {name, image, summary, healthScore, steps, diets} = req.body
 
     try {
-        let recipeCreated = await Recipe.create({
-            name, 
-            image, 
-            summary, 
-            healthScore, 
-            steps,
-        })
-
-      
-        let dietsDb = await Diet.findAll({
-            where: { 
-                name : diets,
-            },
-        });
-
-        await recipeCreated.addDiet(dietsDb)
-
-
-        res.status(200).json(`The recipe ${name} has been created correctly`); 
+        const newRecipe = await postRecipe(name, image, summary, healthScore, steps, diets);
+        res.status(200).json(newRecipe); //ver si es mejor retornar la receta creada o un mensaje
 
     } catch (error) {
         res.status(400).json({error: error.message})

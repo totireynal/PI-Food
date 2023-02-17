@@ -11,7 +11,7 @@ const searchRecipeByName = async (name) => {
     const databaseRecipes = await Recipe.findAll({
         where: {
             name: {
-                [Op.iLike] : `%${name}%`, // es case insensitive, pero me falta agregar que no sea exacta
+                [Op.iLike] : `%${name}%`, 
             },
         },
         include: {
@@ -31,7 +31,7 @@ const searchRecipeByName = async (name) => {
         if([...databaseRecipes, ...filterApiRecipes].length) {
             return [...databaseRecipes, ...filterApiRecipes]
         } else {
-            throw new Error(`Coudn't find a recipe with name: ${name}. Please try another name`)
+            throw new Error(`Coudn't find a recipe with name: ${name}. Please try with another name`)
         }
 };
 
