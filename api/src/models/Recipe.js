@@ -17,8 +17,9 @@ module.exports = (sequelize) => {
     },
 
     image: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false,
+      //imagen default
     },
 
     summary: {

@@ -15,4 +15,3 @@ const getRecipeByIdHandler =  async (req, res) => {
 
 module.exports = { getRecipeByIdHandler };
 
-// unificar la info que me devuelve
