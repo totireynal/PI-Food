@@ -1,8 +1,9 @@
-import { GET_RECIPES, GET_DETAIL } from "./actionsTypes";
+import { GET_RECIPES, GET_DETAIL, GET_DIETS } from "./actionsTypes";
 
 const initialState = { // este es mi estado global
     recipes: [],
-    recipeDetail: {}
+    recipeDetail: {},
+    diets: []
 }
 
 
@@ -13,6 +14,9 @@ const reducer = (state = initialState, action) => {
 
         case GET_DETAIL:
             return {...state, recipeDetail: action.payload};
+
+        case GET_DIETS:
+            return {...state, diets: action.payload};
 
         default:
             return {...state};
