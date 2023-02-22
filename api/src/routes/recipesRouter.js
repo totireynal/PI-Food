@@ -12,8 +12,8 @@ const { postRecipesHandler } = require('../handlers/recipesHandlers/postRecipesH
  }
 
 
-recipesRouter.get('/:idRecipe/information', getRecipeByIdHandler)
-recipesRouter.get('/complexSearch', getRecipeByQueryHandler)
+recipesRouter.get('/:idRecipe', getRecipeByIdHandler)
+recipesRouter.get('/', getRecipeByQueryHandler)
 recipesRouter.post('/', validate,  postRecipesHandler)
 
 

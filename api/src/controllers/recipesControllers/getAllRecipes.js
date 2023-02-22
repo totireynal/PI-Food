@@ -21,7 +21,6 @@ const getAllRecipes = async () => {
     const apiRecipesRaw = (await axios(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`)).data.results;
     
     
-    
     const databaseRecipes = cleanArrayDatabase(databaseRecipesRaw);
     const apiRecipes = cleanArray(apiRecipesRaw);
 

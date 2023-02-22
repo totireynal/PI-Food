@@ -1,8 +1,6 @@
 import React from "react";
 import Card from "../Card/Card";
 
-
-
 const CardsContainer = ({currentRecipes}) => {
     
     return(
