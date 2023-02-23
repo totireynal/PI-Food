@@ -1,28 +1,32 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getDiets } from "../../redux/actions";
+import { getDiets, postRecipe } from "../../redux/actions";
+import { useNavigate } from 'react-router-dom';
 
 const Form = () => {
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+   
 
-    useEffect(() => {
-        dispatch(getDiets())
-    }, [dispatch])
-
+    
     const data = useSelector(state => state.diets)
-
+    
     const [form, setForm] = useState({
         name:'',
         summary:'',
         healthScore:'',
         steps:'',
         image:'',
-        diets:[]
+        diets: []
     })
+    
+    useEffect(() => {
+        dispatch(getDiets())
+    }, [dispatch])
 
-    const [select, setSelect] = useState([]);
+
 
     // const [errors, setErrors] = useState({
     //     name:'',
@@ -36,29 +40,46 @@ const Form = () => {
     const changeHandler = (event) => {
         const property =  event.target.name;
         const value = event.target.value;
-        const checked = event.target.checked; 
-
-       setForm({
-        ...form,
-        [property]: value,
-        diets: select
-
-       })
-
-       if(checked) {
-        setSelect([...select, value])
-       } 
-       else {
-        setSelect([select.filter(diet=> diet !== value)])
-       }
-
-       console.log(select)
+        
+         setForm( {
+            ...form,
+            [property]: value
+        })
+        
+    }
+    
+    const checkHandler = (event) => {
+        if (event.target.checked) {
+            setForm({
+                ...form,
+                diets: [...form.diets, event.target.value]
+            })
+        } 
+        else {
+            const filteredDiets = form.diets.filter(elem => elem !== event.target.value )
+            setForm({
+                ...form,
+                diets: filteredDiets
+            })
+        }
     }
     // const validate = (form) => {
-    // }
+        // }
+        console.log(form)
 
     const submitHandler = (event) => {
         event.preventDefault();
+        dispatch(postRecipe(form));
+        alert(`Your recipe ${form.name} has been created!`);
+        setForm({
+        name:'',
+        summary:'',
+        healthScore:'',
+        steps:'',
+        image:'',
+        diets: []
+        });
+        navigate('/home');
     }
 
     return (
@@ -77,17 +98,17 @@ const Form = () => {
             </div>
             <div>
                 <label htmlFor="steps">Steps: </label>
-                <input type='text' name='steps'value={form.steps} onChange={changeHandler}/>
+                <textarea name='steps' value={form.steps} onChange={changeHandler}> </textarea>
             </div>
             <div>
                 <label htmlFor="image">Image: </label>
                 <input type='text' name='image'value={form.image} onChange={changeHandler}/>
             </div>
             <div>
-                {data.map((diet, index) => {
+                {data.map((diet) => {
                     return (
-                        <label key={index}>
-                            <input type='checkbox' value={diet.name} onChange={changeHandler}/>
+                        <label key={diet.id}>
+                            <input type='checkbox' name='diets' value={diet.name} onChange={checkHandler}/>
                             {diet.name}
                         </label>
                     )
@@ -96,7 +117,7 @@ const Form = () => {
                 }
             </div>
             
-            <button> SUBMIT </button>
+            <button>Create Recipe</button>
         </form>
     )
 };
@@ -104,33 +125,3 @@ const Form = () => {
 export default Form;
 
 
-
-
-// {
-    /* <div>
-                <label htmlFor="diets">Choose diets: </label>
-                <br/>
-                <input type='checkbox' name='diets' value='vegetarian' onChange={changeHandler}/> Vegetarian
-                <br/>
-                <input type='checkbox' name='diets' value='gluten free' onChange={changeHandler}/> Gluten free
-                <br/>
-                <input type='checkbox' name='diets' value='dairy free' onChange={changeHandler}/> Dairy free
-                <br/>
-                <input type='checkbox' name='diets' value='lacto ovo vegetarian' onChange={changeHandler}/> Lacto Ovo vegetarian
-                <br/>
-                <input type='checkbox' name='diets' value='vegan' onChange={changeHandler}/> Vegan
-                <br/>
-                <input type='checkbox' name='diets' value='paleolithic' onChange={changeHandler}/> Paleolithic
-                <br/>
-                <input type='checkbox' name='diets' value='primal' onChange={changeHandler}/> Primal
-                <br/>
-                <input type='checkbox' name='diets' value='whole 30' onChange={changeHandler}/> Whole 30
-                <br/>
-                <input type='checkbox' name='diets' value='pescatarian' onChange={changeHandler}/> Pescatarian
-                <br/>
-                <input type='checkbox' name='diets' value='ketogenic' onChange={changeHandler}/> Ketogenic
-                <br/>
-                <input type='checkbox' name='diets' value='fodmap friendly' onChange={changeHandler}/> Fodmap friendly
-                <br/>
-            </div> */
-        // }

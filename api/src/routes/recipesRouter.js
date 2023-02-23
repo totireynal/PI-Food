@@ -4,8 +4,8 @@ const { getRecipeByQueryHandler } = require('../handlers/recipesHandlers/getQuer
 const { postRecipesHandler } = require('../handlers/recipesHandlers/postRecipesHandler');
 
  const validate = (req, res, next) => {
-    const {name, image, summary, healthScore, steps, diets} = req.body
-    if(!name || ! image || !summary || !healthScore || !steps || !diets) 
+    const {name, summary, healthScore, steps, diets} = req.body
+    if(!name || !summary || !healthScore || !steps || !diets) 
         return res.status(400).json({error: 'Missing data'});
 
         next();

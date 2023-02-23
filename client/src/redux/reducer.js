@@ -1,4 +1,4 @@
-import { GET_RECIPES, GET_DETAIL, GET_DIETS, ORDER_NAME, ORDER_HEALTHSCORE, FILTER_SOURCE, FILTER_DIET } from "./actionsTypes";
+import { GET_RECIPES, GET_DETAIL, GET_DIETS, ORDER_NAME, ORDER_HEALTHSCORE, FILTER_SOURCE, FILTER_DIET, GET_RECIPES_BY_NAME, POST_RECIPE } from "./actionsTypes";
 
 const initialState = { // este es mi estado global
     recipes: [],
@@ -15,11 +15,17 @@ const reducer = (state = initialState, action) => {
                 recipes: action.payload,
                 recipesCopy: action.payload};
 
+        case GET_RECIPES_BY_NAME: 
+            return {...state, recipes: action.payload}
+
         case GET_DETAIL:
             return {...state, recipeDetail: action.payload};
 
         case GET_DIETS:
             return {...state, diets: action.payload};
+
+        case POST_RECIPE:
+            return {...state}
 
         case ORDER_NAME:
             let sortedRecipesbyName = action.payload === 'asc' ?

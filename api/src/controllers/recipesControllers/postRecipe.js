@@ -34,7 +34,7 @@ const postRecipe = async (name, image, summary, healthScore, steps, diets) => {
 
     // return findRecipe;
 
-    return recipeCreated;
+    return `The recipe ${name} was created correctly`;
 
 };
 

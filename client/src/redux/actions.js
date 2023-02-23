@@ -1,4 +1,4 @@
-import { GET_RECIPES,GET_RECIPES_BY_NAME, GET_DETAIL, GET_DIETS,ORDER_NAME, ORDER_HEALTHSCORE, FILTER_SOURCE, FILTER_DIET } from "./actionsTypes";
+import { GET_RECIPES,GET_RECIPES_BY_NAME, GET_DETAIL, GET_DIETS,ORDER_NAME,POST_RECIPE, ORDER_HEALTHSCORE, FILTER_SOURCE, FILTER_DIET } from "./actionsTypes";
 import axios from 'axios';
 
 
@@ -42,6 +42,15 @@ export const getDiets = () => {
         return dispatch({
             type: GET_DIETS,
             payload: data
+        })
+    }
+}
+
+export const postRecipe = (recipe) => { // recibo lo que me mandan desde el front
+    return async (dispatch) => {
+        await axios.post('http://localhost:3001/recipes', recipe);
+        return dispatch({
+            type: POST_RECIPE
         })
     }
 }

@@ -52,6 +52,10 @@ const Home = () => {
         dispatch(filterByDiet(event.target.value))
     }
 
+    const handlerReset = () => {
+        dispatch(getRecipes())
+    }
+
 
 
     return (
@@ -81,6 +85,7 @@ const Home = () => {
                 })}
                
             </select>
+            <button onClick={handlerReset}>Show All Recipes</button>
             <CardsContainer currentRecipes={currentRecipes}/>
             <Pagination 
                 allRecipes={allRecipes.length} 
