@@ -1,0 +1,21 @@
+
+*, 
+*::before,
+*::after{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.cards{
+    
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 20rem));
+    gap: 2rem;
+    justify-content: center;
+    max-width: 90rem;
+    width: 100%;
+    margin: 0 auto;
+    padding: 2rem 3rem;
+
+}

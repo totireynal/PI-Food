@@ -1,4 +1,4 @@
-import { GET_RECIPES, GET_DETAIL, GET_DIETS, ORDER_NAME, ORDER_HEALTHSCORE, FILTER_SOURCE, FILTER_DIET, GET_RECIPES_BY_NAME, POST_RECIPE } from "./actionsTypes";
+import { GET_RECIPES, GET_DETAIL, GET_DIETS, ORDER_NAME, ORDER_HEALTHSCORE, FILTER_SOURCE, FILTER_DIET, GET_RECIPES_BY_NAME, POST_RECIPE, CLEAN_DETAIL } from "./actionsTypes";
 
 const initialState = { // este es mi estado global
     recipes: [],
@@ -74,6 +74,12 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 recipes: filteredRecipesByDiet
             };
+
+            case CLEAN_DETAIL:
+                return {
+                    ...state,
+                    recipeDetail: {}
+                };
             
             default:
             return {...state};

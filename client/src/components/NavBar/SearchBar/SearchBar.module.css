@@ -1,0 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Poppins:ital,wght@0,200;0,400;1,100&family=Space+Mono&display=swap');
+
+.button {
+    font-family: "Poppins", sans-serif;
+    font-size: large;
+    background-color: #99AF71;
+    border-width: 0;
+    border-color: #99AF71;
+    border-top-right-radius: 0.3rem;
+    border-bottom-right-radius: 0.3rem;
+    padding: 0.5rem 1.5rem;
+    transition: 0.3s;
+    color: #FFFFFC;
+   
+}
+
+.button:hover{
+    background-color: #FF4D17;
+    border-color: #FF4D17 ;
+   
+ 
+
+}
+
+
+.input {
+    font-family: "Poppins", sans-serif;
+    font-size: large;
+    padding: 0.45rem 2rem;
+    border: 0.1rem solid #99AF71 ;
+    outline: none;
+    border-top-left-radius: 0.3rem;
+    border-bottom-left-radius: 0.3rem;
+}

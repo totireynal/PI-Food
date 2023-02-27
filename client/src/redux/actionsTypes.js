@@ -7,3 +7,4 @@ export const ORDER_NAME = 'ORDER_NAME';
 export const ORDER_HEALTHSCORE = 'ORDER_HEALTHSCORE';
 export const FILTER_SOURCE = 'FILTER_SOURCE';
 export const FILTER_DIET = 'FILTER_DIET';
+export const CLEAN_DETAIL = 'CLEAN_DETAIL';

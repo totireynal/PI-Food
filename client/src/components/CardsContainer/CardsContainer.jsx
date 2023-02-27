@@ -1,10 +1,11 @@
 import React from "react";
 import Card from "../Card/Card";
+import style from './CardsContainer.module.css';
 
 const CardsContainer = ({currentRecipes}) => {
     
     return(
-        <div>
+        <div className={style.cards}>
             {currentRecipes && currentRecipes.map((recipe, index)=>{
                 return (
                     <Card

@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Poppins:ital,wght@0,200;0,400;1,100&family=Space+Mono&display=swap');
+
+*{
+    margin: 0 auto;
+}
+
+
+.container {
+    background-color: #CBD4C2;
+    font-family: "Poppins", sans-serif;
+    border-radius: 2rem;
+    display: flex;
+    flex-direction: column;
+    width:100%;
+    text-decoration: none;
+    font-size: larger;
+    justify-content: center;
+    color:#50514F;
+    transition:transform 200ms ease-in;
+     
+}
+
+
+
+.container:hover {
+    transform: scale(1.02);
+}
+
+.img {
+    height: 15rem;
+    width: 100%;
+    object-fit: cover;
+    border-top-right-radius: 2rem;
+    border-top-left-radius: 2rem;
+}
+
+
+
+.text {
+ color: #50514F;
+ text-align: center;
+ padding: 1.5rem;
+ flex-grow: 1;
+
+}
+
+.btn{
+    font-family: "Poppins" , sans-serif;
+    font-size: large;
+    font-weight: 900;
+    background-color: #FF4D17;
+    color: #FFFFFC;
+    width: 100%;
+    padding: 1rem;
+    border-bottom-left-radius: 2rem;
+    border-bottom-right-radius: 2rem;
+    border: none;
+    cursor: pointer;
+}
+
+
+
+
+
+

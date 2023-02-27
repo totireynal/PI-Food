@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getRecipes, orderByName, orderHealthScore, filterBySource, getDiets, filterByDiet } from "../../redux/actions";
 import Pagination from "../../components/Pagination/Pagination";
+import style from './Home.module.css';
 
 
 
@@ -26,11 +27,8 @@ const Home = () => {
  
     useEffect(() => {
         dispatch(getRecipes());
+        dispatch(getDiets());
     },[dispatch])
-
-    useEffect(() => {
-        dispatch(getDiets())
-    }, [dispatch])
 
     const handlerOrderByName = (event) => {
         dispatch(orderByName(event.target.value));
@@ -59,38 +57,40 @@ const Home = () => {
 
 
     return (
-        <div>
-            <h1>Este es el home</h1>
-            <select onChange={handlerOrderByHealthScore}>
-                <option value='all'>Sort by HealthScore</option>
-                <option value='asc'>Ascending</option>
-                <option value='desc'>Descending</option>
-            </select>
-            <select onChange={handlerOrderByName}>
-                <option value='all'>Sort by Name</option>
-                <option value='asc'>A-Z</option>
-                <option value='desc'>Z-A</option>
-            </select>
-            <select onChange={handlerFilterSource}>
-                <option value='all'>Filter By Source</option>
-                <option value='false'>API</option>
-                <option value='true'>DB</option>
-            </select>
-            <select onChange={handlerFilterDiets}>
-                <option value='all'>Filter By Diet</option>
-                {diets.map((diet, index) => {
-                    return (
-                        <option key={index} value={diet.name}>{diet.name}</option>   
-                    )
-                })}
-               
-            </select>
-            <button onClick={handlerReset}>Show All Recipes</button>
-            <CardsContainer currentRecipes={currentRecipes}/>
-            <Pagination 
-                allRecipes={allRecipes.length} 
-                recipesPerPage={recipesPerPage}
-                paginado={paginado}/>
+        <div className={style.bigContainer}>
+
+            <div className={style.container}>
+           
+                <select onChange={handlerOrderByName}>
+                    <option value='all'>Sort by Name</option>
+                    <option value='asc'>A-Z</option>
+                    <option value='desc'>Z-A</option>
+                </select>
+                <select onChange={handlerOrderByHealthScore}>
+                    <option value='all'>Sort by HealthScore</option>
+                    <option value='asc'>Ascending</option>
+                    <option value='desc'>Descending</option>
+                </select>
+                <select onChange={handlerFilterSource}>
+                    <option value='all'>Filter By Source</option>
+                    <option value='false'>API</option>
+                    <option value='true'>DB</option>
+                </select>
+                <select onChange={handlerFilterDiets}>
+                    <option value='all'>Filter By Diet</option>
+                        {diets.map((diet, index) => {
+                            return (
+                                <option key={index} value={diet.name}>{diet.name}</option>   
+                            )
+                        })}
+               </select>
+                <button className={style.btn} onClick={handlerReset}>Show All Recipes</button>
+            </div>    
+                {allRecipes.error ? <p>Recipe not found </p> : <CardsContainer currentRecipes={currentRecipes}/>} 
+                <Pagination 
+                        allRecipes={allRecipes.length} 
+                        recipesPerPage={recipesPerPage}
+                        paginado={paginado}/>
         </div>
     )
 };

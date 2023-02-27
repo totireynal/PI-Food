@@ -1,4 +1,4 @@
-import { GET_RECIPES,GET_RECIPES_BY_NAME, GET_DETAIL, GET_DIETS,ORDER_NAME,POST_RECIPE, ORDER_HEALTHSCORE, FILTER_SOURCE, FILTER_DIET } from "./actionsTypes";
+import { GET_RECIPES,GET_RECIPES_BY_NAME, GET_DETAIL, GET_DIETS,ORDER_NAME,POST_RECIPE, ORDER_HEALTHSCORE, FILTER_SOURCE, FILTER_DIET, CLEAN_DETAIL } from "./actionsTypes";
 import axios from 'axios';
 
 
@@ -80,5 +80,11 @@ export const filterByDiet = (diet) => {
     return {
         type: FILTER_DIET,
         payload: diet
+    }
+}
+
+export const cleanDetail = () => {
+    return {
+        type: CLEAN_DETAIL
     }
 }
