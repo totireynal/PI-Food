@@ -21,9 +21,13 @@ if (source === 'api'){
         },
     });
 
-    const recipeDbById = cleanObjectDatabase(recipeDbByIdRaw);
-    if (!recipeDbById) return `Coudn't find the recipe with id: ${idRecipe}. Please try with another id.`
-    return recipeDbById;
+    if (recipeDbByIdRaw) {
+        return cleanObjectDatabase(recipeDbByIdRaw);
+        
+    } else {
+        return `Coudn't find the recipe with id: ${idRecipe}. Please try with another id.`
+
+    }
 }
 }
 

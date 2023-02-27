@@ -3,12 +3,12 @@ require('dotenv').config();
 const { API_KEY } = process.env;
 const axios = require('axios');
 const {Op} = require('sequelize');
-const { cleanArray } = require('../../utils/utils')
+const { cleanArray, cleanArrayDatabase } = require('../../utils/utils')
 
 
 
 const searchRecipeByName = async (name) => {
-    const databaseRecipes = await Recipe.findAll({
+    const databaseRecipesRaw = await Recipe.findAll({
         where: {
             name: {
                 [Op.iLike] : `%${name}%`, 
@@ -22,7 +22,7 @@ const searchRecipeByName = async (name) => {
             },
         },
     });
-
+        const databaseRecipes = cleanArrayDatabase(databaseRecipesRaw)
         const apiRecipesRaw = (await axios(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`)).data.results;
         const apiRecipes = cleanArray(apiRecipesRaw);
 
