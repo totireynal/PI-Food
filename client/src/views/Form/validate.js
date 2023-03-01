@@ -3,7 +3,7 @@ const validate = (form) => {
 let errors = {};
 
 if (!form.name) {
-    errors.name = 'A name is required. Please write a name for your recipe.'
+    errors.name = 'Please write a name.'
 };
 
 if (form.name.length > 255) {
@@ -11,27 +11,27 @@ if (form.name.length > 255) {
 };
 
 if (!form.summary) {
-    errors.summary = 'A summary of the recipe must be provided. Please write a summary of your recipe.'
+    errors.summary = 'Please write a summary.'
 };
 
 if (!form.healthScore) {
-    errors.healthScore = "A healthScore is required. Please enter a number for your recipe."
+    errors.healthScore = "Please enter a number."
 };
 
 if (form.healthScore < 0 || form.healthScore > 100) {
-    errors.healthScore = "Please enter a valid healthScore. It must be a number between 0 and 100."
+    errors.healthScore = "Health Score must be a number between 0 and 100."
 };
 
 if (!/^\d+$/.test(form.healthScore)) {
-    errors.healthScore = 'HealthScore must be a number.'
+    errors.healthScore = 'Health Score must be a number between 0 and 100.'
 };
 
 if (!form.steps) {
-    errors.steps = 'Steps are required. Please enter the steps for your recipe.'
+    errors.steps = 'Please enter the steps.'
 };
 
 if(form.diets.length === 0) {
-    errors.diets = 'Please choose at least one diet for your recipe'
+    errors.diets = 'Please choose at least one diet.'
 };
 
 return errors;

@@ -18,15 +18,14 @@ const NavBar = () => {
     return (
         <nav className={style.bigContainer}>
             <div className={style.container}>
-                <Link onClick={refreshPage} to='/home'>
-                    <button className={style.button}>Home PI Foods</button></Link>
+                <button onClick={refreshPage}  className={style.button}>Home PI Foods</button>
             <div className={style.search}>
-                {location.pathname === '/home' &&  <SearchBar/>}
+                <SearchBar/>
             </div>
             <div className={style.create}>
-                { location.pathname !== '/form' && <Link to='/form'>
+                <Link to='/form'>
                 <button className={style.button}>Create your Recipe</button>
-                </Link>}
+                </Link>
             </div>
             </div>
         </nav>

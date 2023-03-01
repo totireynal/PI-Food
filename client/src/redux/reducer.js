@@ -16,7 +16,7 @@ const reducer = (state = initialState, action) => {
                 recipesCopy: action.payload};
 
         case GET_RECIPES_BY_NAME: 
-            return {...state, recipes: action.payload}
+            return {...state, recipes: action.payload};
 
         case GET_DETAIL:
             return {...state, recipeDetail: action.payload};
@@ -25,7 +25,8 @@ const reducer = (state = initialState, action) => {
             return {...state, diets: action.payload};
 
         case POST_RECIPE:
-            return {...state}
+            return {...state};
+
 
         case ORDER_NAME:
             let sortedRecipesbyName = action.payload === 'asc' ?

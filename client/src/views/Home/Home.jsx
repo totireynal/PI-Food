@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { getRecipes, orderByName, orderHealthScore, filterBySource, getDiets, filterByDiet } from "../../redux/actions";
 import Pagination from "../../components/Pagination/Pagination";
 import style from './Home.module.css';
+import Loader from "../../components/Loader/Loader";
+import Message from "../../components/Message/Message";
 
 
 
@@ -14,20 +16,26 @@ const Home = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [order, setOrder] = useState('');
     const recipesPerPage =  9;
-    const allRecipes = useSelector(state=> state.recipes)
-    const diets = useSelector(state => state.diets)
+    const allRecipes = useSelector(state=> state.recipes);
+    const diets = useSelector(state => state.diets);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+
     
     const lastRecipeIndex = currentPage * recipesPerPage; // 9
     const firstRecipeIndex = lastRecipeIndex - recipesPerPage; // 0
-    const currentRecipes = allRecipes.slice(firstRecipeIndex, lastRecipeIndex);
+    const currentRecipes = (!allRecipes.error) && allRecipes.slice(firstRecipeIndex, lastRecipeIndex);
 
     const paginado = (pageNumbers) => {
         setCurrentPage(pageNumbers)
     }
  
     useEffect(() => {
+        setLoading(true)
         dispatch(getRecipes());
         dispatch(getDiets());
+
+        setLoading(false)
     },[dispatch])
 
     const handlerOrderByName = (event) => {
@@ -85,8 +93,11 @@ const Home = () => {
                         })}
                </select>
                 <button className={style.btn} onClick={handlerReset}>Show All Recipes</button>
+               
+                {loading && <Loader/>}
+                {error && <Message/>}
+                {allRecipes && <CardsContainer currentRecipes={currentRecipes}/>}
             </div>    
-                {allRecipes.error ? <p>Recipe not found </p> : <CardsContainer currentRecipes={currentRecipes}/>} 
                 <Pagination 
                         allRecipes={allRecipes.length} 
                         recipesPerPage={recipesPerPage}

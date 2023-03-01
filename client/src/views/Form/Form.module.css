@@ -1,0 +1,196 @@
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Poppins:ital,wght@0,200;0,400;1,100&family=Space+Mono&display=swap');
+
+*, 
+*::before,
+*::after{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+      
+}
+
+
+.bigContainer {
+    background-image:url('../../components/NavBar/Img/1000.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+    padding: 0 2rem;
+}
+
+
+
+.container {
+    background:linear-gradient(135deg, #FF4D17,  #B9D388);
+    max-width: 50rem;
+    width: 100%;
+    padding: 2rem;
+    border-radius: 2rem;
+}
+
+.container h2 {
+    font-size: 1.8rem;
+    color: #DCE9C2;
+    font-weight: bold;
+    position: relative;
+}
+
+.container h2::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 3px;
+    width: 30px;
+    background: #B9D388 ;
+}
+
+.recipeInformation {
+    
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+     
+}
+
+.input {
+    width: calc(100% / 2 - 1.75rem);
+    padding: 0.5rem;
+}
+
+
+
+.input input{
+    height: 2rem;
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #B9D388;
+    border-radius: 0.5rem;
+    font-size: small;
+}
+
+
+.input textarea {
+    height: 2rem;
+    width: 45rem;
+    margin-right: 10rem;;
+    padding-top: 0.5rem;
+    padding-left: 0.5rem;
+    padding-bottom: 2rem;
+    border: 1px solid #B9D388;
+    border-radius: 0.5rem;
+    font-size: small;
+    
+}
+
+.input label {
+    color: #EEF4DF;
+    font-weight: 500;
+   
+}
+
+
+.title{
+color: #DCE9C2;
+font-size: large;
+width: 80%;
+padding: 0.8rem;
+} 
+
+.dietsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    gap: 1.5rem 1rem;
+    
+}
+
+.checkbox label{
+    color: #FFFFFC;
+    font-weight: 500;
+    padding: 0 1rem;
+    cursor: pointer;
+     
+}
+
+.checkbox input {
+    display: none;
+}
+
+[type='checkbox']:checked + span {
+    background-color: #99AF71;
+    padding: 0.6rem;
+    border-radius: 2rem;
+}
+
+
+
+.btnBack{
+    font-size: medium;
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+    background-color: #99AF71;
+    border: none;
+    color: #FFFFFC;
+    cursor: pointer;
+}
+
+.btnContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
+
+.btnCreate{
+    
+   
+    font-size: larger;
+    padding: 0.8rem;
+    border-radius: 1rem;
+    background-color: #FF6614;
+    border: none;
+    color: #FFFFFC;
+    cursor: pointer;
+}
+
+.btnCreateDisabled{
+    
+   
+    font-size: larger;
+    padding: 0.8rem;
+    border-radius: 1rem;
+    background-color: #FFCFA4;
+    border: none;
+    color: #FFFFFC;
+
+}
+
+ .dietserrors {
+    
+    text-align: center;
+    color: #50514F;
+    font-size:1rem;
+}
+
+.errors {
+    
+    color: #50514F;
+    font-size: 1rem;
+}
+
+
+
+
+
+
+
+
+

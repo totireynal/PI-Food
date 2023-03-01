@@ -15,12 +15,20 @@ export const getRecipes = () => {
 
 export const getRecipesByName = (name) => {
     return async (dispatch) => {
-        const response = await axios.get(`http://localhost:3001/recipes?name=${name}`);
-        const data = response.data;
-        return dispatch({
-            type: GET_RECIPES_BY_NAME,
-            payload: data
+        try {
+            const response = await axios.get(`http://localhost:3001/recipes?name=${name}`);
+            const data = response.data;
+            return dispatch({
+                type: GET_RECIPES_BY_NAME,
+                payload: data
         })
+        } catch (error) {
+            return dispatch({
+                type: GET_RECIPES_BY_NAME,
+                payload: error.response.data
+            })
+       
+    }
     }
 }
 

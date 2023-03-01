@@ -75,4 +75,18 @@
     
 }
 
+.container .error {
+    background-color: #FF4D17;
+    border-radius: 2rem;
+    display: flex;
+    justify-content: center;
+    text-align: center;
 
+
+    font-size: x-large;
+    justify-content: center;
+    color:#FFFCFF;
+    padding: 1rem;
+
+    
+}

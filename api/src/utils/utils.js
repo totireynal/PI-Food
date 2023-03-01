@@ -39,7 +39,7 @@ const cleanObjectApi = (response) => {
         summary: response.summary,
         healthScore: response.healthScore,
         diets: response.diets,
-        steps: response.analyzedInstructions[0]?.steps.map(elem => elem.step),
+        steps: response.analyzedInstructions[0]?.steps.map(elem => elem.step).join(' '),
         created: false
     }
 
