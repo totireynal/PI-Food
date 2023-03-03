@@ -1,12 +1,14 @@
 import React from "react";
 import Card from "../Card/Card";
+import Loader from "../Loader/Loader";
 import style from './CardsContainer.module.css';
 
-const CardsContainer = ({currentRecipes}) => {
-    console.log(currentRecipes)
+const CardsContainer = ({currentRecipes, loading}) => {
+
     return(
         <div className={style.cards}>
-            {currentRecipes && currentRecipes.map((recipe, index)=>{
+            {loading ? <Loader/> :
+            currentRecipes && currentRecipes.map((recipe, index)=>{
                 return (
                     <Card
                         key={index}
@@ -18,7 +20,9 @@ const CardsContainer = ({currentRecipes}) => {
                 ) 
     
             })
-            }
+            
+        }
+            
         </div>
     )
         };

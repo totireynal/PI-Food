@@ -56,9 +56,12 @@ export const getDiets = () => {
 
 export const postRecipe = (recipe) => { // recibo lo que me mandan desde el front
     return async (dispatch) => {
-        await axios.post('http://localhost:3001/recipes', recipe);
+        const response = await axios.post('http://localhost:3001/recipes', recipe);
+        const data = response.data
         return dispatch({
-            type: POST_RECIPE
+            type: POST_RECIPE,
+            payload: data
+          
         })
     }
 }

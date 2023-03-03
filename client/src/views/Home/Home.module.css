@@ -10,16 +10,22 @@
 
 .bigContainer {
 
-    
-    top: 0;
+
     font-family: "Poppins", sans-serif;
-    padding: 1.7rem 0 2rem;
-    width: 100%;
-    overflow: hidden;
-   background-image: url('../../components/NavBar/Img/1000.jpg');
+    background-image: url('../../components/NavBar/Img/1000.jpg');
+    background-color: #99AF71;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  min-height: 100vh;
+    
+
    
   
-}
+} 
 
 .container {
     max-width: 90rem;

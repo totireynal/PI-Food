@@ -10,14 +10,16 @@
 }
 
 .container {
-    max-width: 90rem;
+    max-width: 100rem;
     width: 100%;
-    margin: 0 auto;
+    margin: auto;
     padding: 0rem 3rem;
     display: flex;
     flex-direction: row;
     justify-content: center;
     gap: 0.5rem;
+    align-items:flex-end
+    
 
     
 }
@@ -30,14 +32,67 @@
     border:none;
     color: #FFFFFC;
     padding: 0.5rem 1rem;
-    margin-bottom: 5rem;
     cursor: pointer;
     transition: 0.3s;
-    margin-top: 4rem;
+  
 
+}
+
+.active {
+    font-family: "Poppins", sans-serif;
+    font-size: large;
+    background-color: #99AF71;
+    border-radius: 0.5rem;
+    border:none;
+    color: #FFFFFC;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
 .page:hover{
     background-color: #99AF71;
     transform: scale(1.1);
 }
+
+.arrowLeft {
+	width: 3vmin;
+	height: 3vmin;
+	background: transparent;
+	border-top: 1vmin solid #FF4D17;
+	border-right: 1vmin solid #FF4D17;
+	box-shadow: 0 0 0 lightgray;
+	transition: all 200ms ease;
+	transform: translate3d(0,-50%,0) rotate(-135deg);
+    
+    
+
+}
+
+.arrowRight {
+
+    width: 3vmin;
+	height: 3vmin;
+	background: transparent;
+	border-top: 1vmin solid #FF4D17;
+	border-right: 1vmin solid #FF4D17;
+	box-shadow: 0 0 0 lightgray;
+	transition: all 200ms ease;
+    transform: translate3d(0,-50%,0) rotate(45deg);
+}
+
+
+
+	
+	.arrowRight:hover {
+		border-color: #99AF71;
+		box-shadow: 0.5vmin -0.5vmin 0 #FF4D17;
+      
+	}
+	
+	
+    .arrowLeft:hover {
+		border-color: #99AF71;
+		box-shadow: 0.5vmin -0.5vmin 0 #FF4D17;
+     
+	}

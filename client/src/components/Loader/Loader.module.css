@@ -1,0 +1,17 @@
+
+.loader {
+    margin: auto;
+    border: 1rem solid #EAF0F6;
+    border-radius: 50%;
+    border-top: 1rem solid #FF4D17;
+    width: 10rem;
+    height:10rem;
+    animation: spinner 4s linear infinite;
+    
+}
+
+
+@keyframes spinner {
+    0% {transform: rotate(0deg);}
+    100% {transform: rotate(360deg);}
+}

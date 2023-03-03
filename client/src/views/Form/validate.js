@@ -26,6 +26,11 @@ if (!/^\d+$/.test(form.healthScore)) {
     errors.healthScore = 'Health Score must be a number between 0 and 100.'
 };
 
+
+if (!/(http[s]?:\/\/.*\.(?:png|jpg|gif|svg|jpeg))/i.test(form.image)) {
+    errors.image = 'Image should be an url. It accepts extensions for png, jpg, gif, svg and jpeg.'
+}
+
 if (!form.steps) {
     errors.steps = 'Please enter the steps.'
 };

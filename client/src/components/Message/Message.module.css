@@ -1,0 +1,51 @@
+
+.message {
+    
+    width:  30%;
+    height: 35vh;
+    display: flex;
+    
+    justify-content: center;
+    align-items: center;
+    background-color: #FF4D17;
+    margin: 0 auto;
+    border-radius: 2rem;
+   
+  
+  
+    
+}
+
+.card {
+    background-color: #FF4D17;
+    border-radius: 2rem;
+    width: 22rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 2vh;
+    position: absolute;
+   font-size: larger;
+   text-align: center;
+   color: #FFFFFC;
+
+   
+}
+
+.title {
+    font-size: larger;
+    font-weight: 600;
+}
+
+.closebtn {
+    background-color: #99AF71;
+    border-radius: 0.5rem;
+    border:none;
+    color: #FFFFFC;
+    padding:0.8rem;
+    margin-top: 1rem;
+    cursor: pointer;
+    font-size: large;
+    font-weight: 600;
+}

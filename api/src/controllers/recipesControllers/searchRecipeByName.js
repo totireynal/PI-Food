@@ -31,7 +31,7 @@ const searchRecipeByName = async (name) => {
         if([...databaseRecipes, ...filterApiRecipes].length) {
             return [...databaseRecipes, ...filterApiRecipes]
         } else {
-            throw new Error(`Coudn't find a recipe with name: ${name}. Please try with another name`)
+            throw new Error(`Coudn't find a recipe with name: "${name}". Please try with another name.`)
         }
 };
 

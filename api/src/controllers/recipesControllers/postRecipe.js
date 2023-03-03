@@ -1,7 +1,11 @@
+
 const { Recipe, Diet } = require('../../db')
 
 
 const postRecipe = async (name, image, summary, healthScore, steps, diets) => {
+    
+    
+
     let recipeCreated = await Recipe.create({
         name, 
         image, 
@@ -34,8 +38,10 @@ const postRecipe = async (name, image, summary, healthScore, steps, diets) => {
 
     // return findRecipe;
 
-    return `The recipe ${name} was created correctly`;
+    return `The recipe ${name} has been created correctly`;
+    
 
+    
 };
 
 module.exports = {

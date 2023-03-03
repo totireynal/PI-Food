@@ -6,7 +6,7 @@ import { useNavigate} from 'react-router-dom';
 import  validate  from './validate.js';
 import style from './Form.module.css'
 
-const Form = () => {
+const Form = ({setRefresh}) => {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -18,6 +18,7 @@ const Form = () => {
     const data = useSelector(state => state.diets);
 
     const handlerClick = () => {
+        setRefresh(false);
         navigate('/home');
     }
     
@@ -86,11 +87,13 @@ const Form = () => {
 
     const submitHandler = (event) => {
         event.preventDefault();
-        if (errors.name || errors.summary || errors.healthScore || errors.steps || errors.diets) {
-            alert('Please check your form and send it again')
-        } else {
-            dispatch(postRecipe(form));
-            alert(`Your recipe ${form.name} has been created!`);
+            dispatch(postRecipe(form))
+            .then(res=> alert(res.payload))
+            .then(setRefresh(true))
+            .then(res=>navigate('/home'))
+            .catch(error=>alert(error.response.data.error))
+            
+            
             setForm({
             name:'',
             summary:'',
@@ -99,9 +102,9 @@ const Form = () => {
             image:'',
             diets: []
             });
-            navigate('/home');
+            navigate('/form');
         }
-    }
+    
 
     return (
     <div className={style.bigContainer}>
@@ -129,6 +132,7 @@ const Form = () => {
                     <div className={style.input}>
                         <label htmlFor="image">Image: </label>
                         <input type='text' name='image' placeholder='Enter the url of your image'value={form.image} onChange={changeHandler}/>
+                        <span className={style.errors}>{errors.image && <p>{errors.image}</p>}</span>
                     </div>
                     <div className={style.input}>
                         <label htmlFor="steps">Steps: </label>
@@ -157,7 +161,7 @@ const Form = () => {
                         <span className={style.dietserrors}>{errors.diets && <p>{errors.diets}</p>}</span>
                        
                 <div className={style.btnContainer}>
-                    {(errors.name || errors.summary || errors.healthScore || errors.steps || errors.diets) 
+                    {(errors.name || errors.summary || errors.healthScore || errors.steps || errors.diets || errors.image) 
                     ?  <button className={style.btnCreateDisabled} disabled>Create Recipe</button>
                     :  <button className={style.btnCreate}>Create Recipe</button>
                     }

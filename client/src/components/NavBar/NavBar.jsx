@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import SearchBar from './SearchBar/SearchBar';
 import style from './NavBar.module.css';
 
-const NavBar = () => {
+const NavBar = ({setCurrentPage, setLoading, setIsActive}) => {
 
     const location = useLocation();
     const navigate = useNavigate();
@@ -20,7 +20,7 @@ const NavBar = () => {
             <div className={style.container}>
                 <button onClick={refreshPage}  className={style.button}>Home PI Foods</button>
             <div className={style.search}>
-                <SearchBar/>
+                <SearchBar setCurrentPage={setCurrentPage} setLoading={setLoading} setIsActive={setIsActive}/>
             </div>
             <div className={style.create}>
                 <Link to='/form'>

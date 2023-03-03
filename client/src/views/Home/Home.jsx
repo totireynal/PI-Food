@@ -2,66 +2,82 @@ import React from "react";
 import CardsContainer from "../../components/CardsContainer/CardsContainer";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from 'react-router-dom';
+import Message from "../../components/Message/Message";
 import { getRecipes, orderByName, orderHealthScore, filterBySource, getDiets, filterByDiet } from "../../redux/actions";
 import Pagination from "../../components/Pagination/Pagination";
 import style from './Home.module.css';
-import Loader from "../../components/Loader/Loader";
-import Message from "../../components/Message/Message";
 
 
 
-const Home = () => {
+
+const Home = ({currentPage, setCurrentPage, isActive, setIsActive, loading, setLoading, refresh, setRefresh }) => {
+    
+
+  
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
-    const [currentPage, setCurrentPage] = useState(1);
-    const [order, setOrder] = useState('');
-    const recipesPerPage =  9;
     const allRecipes = useSelector(state=> state.recipes);
     const diets = useSelector(state => state.diets);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
 
+    const [order, setOrder] = useState('');
     
+    const recipesPerPage =  9;
     const lastRecipeIndex = currentPage * recipesPerPage; // 9
     const firstRecipeIndex = lastRecipeIndex - recipesPerPage; // 0
     const currentRecipes = (!allRecipes.error) && allRecipes.slice(firstRecipeIndex, lastRecipeIndex);
 
     const paginado = (pageNumbers) => {
         setCurrentPage(pageNumbers)
+        setIsActive(pageNumbers)
     }
- 
-    useEffect(() => {
-        setLoading(true)
-        dispatch(getRecipes());
-        dispatch(getDiets());
 
-        setLoading(false)
-    },[dispatch])
+    useEffect(() => {
+
+        if (refresh){
+        setLoading(true)
+        dispatch(getRecipes())
+        .then(res => setLoading(false))
+        .catch(err => err);
+        }
+
+        dispatch(getDiets());
+        
+    },[dispatch, refresh, setLoading])
 
     const handlerOrderByName = (event) => {
-        dispatch(orderByName(event.target.value));
-        setCurrentPage(1);
-        setOrder(`Order: ${event.target.value}`);
-    }
+      dispatch(orderByName(event.target.value));
+      setCurrentPage(1);
+      setOrder(`Order: ${event.target.value}`);
+  }
 
-    const handlerOrderByHealthScore = (event) => {
-        dispatch(orderHealthScore(event.target.value))
-        setCurrentPage(1);
-        setOrder(`Order: ${event.target.value}`);
-    }
+  const handlerOrderByHealthScore = (event) => {
+      dispatch(orderHealthScore(event.target.value))
+      setCurrentPage(1);
+      setOrder(`Order: ${event.target.value}`);
+  }
 
-    const handlerFilterSource = (event) => {
-        dispatch(filterBySource(event.target.value))
-    }
+  const handlerFilterSource = (event) => {
+      dispatch(filterBySource(event.target.value));
+      setCurrentPage(1);
+  }
 
-    const handlerFilterDiets = (event) => {
-        dispatch(filterByDiet(event.target.value))
-    }
+  const handlerFilterDiets = (event) => {
+      dispatch(filterByDiet(event.target.value));
+      setCurrentPage(1);
+  }
 
-    const handlerReset = () => {
-        dispatch(getRecipes())
-    }
+  const handlerReset = () => {
+      setLoading(true)
+      navigate(0)
+      setLoading(false)
+     
 
+      setCurrentPage(1);
+      setIsActive(1);
+      setRefresh(true);
+  }
 
 
     return (
@@ -92,16 +108,21 @@ const Home = () => {
                             )
                         })}
                </select>
-                <button className={style.btn} onClick={handlerReset}>Show All Recipes</button>
+                <button className={style.btn} onClick={handlerReset}>Reset filters</button>
                
-                {loading && <Loader/>}
-                {error && <Message/>}
-                {allRecipes && <CardsContainer currentRecipes={currentRecipes}/>}
-            </div>    
-                <Pagination 
+               
+                {allRecipes.error ? <Message message={allRecipes.error} /> : <CardsContainer currentRecipes={currentRecipes} loading={loading} setLoading={setLoading}/>}
+                {!loading  && <Pagination 
                         allRecipes={allRecipes.length} 
                         recipesPerPage={recipesPerPage}
-                        paginado={paginado}/>
+                        paginado={paginado}
+                        currentPage={currentPage}
+                        setCurrentPage={setCurrentPage}
+                        isActive={isActive}
+                        setIsActive={setIsActive}/>
+                        
+                }
+                        </div>    
         </div>
     )
 };
